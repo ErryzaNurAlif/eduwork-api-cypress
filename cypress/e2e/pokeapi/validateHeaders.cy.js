@@ -31,4 +31,15 @@ describe("Automation API with Pokemon API", () => {
       cy.log(JSON.stringify(response.body));
     });
   });
+
+  it("Successfully validate status code", () => {
+    cy.request("https://pokeapi.co/api/v2/pokemon/ditto").as("pokemon");
+    cy.get("@pokemon").its("status").should("eq", 200);
+
+    //OR
+
+    cy.get("@pokemon").then((response) => {
+      expect(response.status).to.eq(200);
+    });
+  });
 });
