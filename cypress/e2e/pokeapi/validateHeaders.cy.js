@@ -42,4 +42,14 @@ describe("Automation API with Pokemon API", () => {
       expect(response.status).to.eq(200);
     });
   });
+
+  it("Successfully validate content", () => {
+    cy.request({
+      method: "GET",
+      url: "https://pokeapi.co/api/v2/pokemon/ditto",
+    }).then((response) => {
+      cy.log(JSON.stringify(response.body.abilities[0].ability["name"]));
+      expect(response.body.abilities[0].ability["name"]).to.eq("limber");
+    });
+  });
 });
