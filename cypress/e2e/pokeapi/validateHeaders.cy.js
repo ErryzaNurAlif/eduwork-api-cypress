@@ -43,7 +43,7 @@ describe("Automation API with Pokemon API", () => {
     });
   });
 
-  it("Successfully validate content", () => {
+  it.only("Successfully validate content", () => {
     cy.request({
       method: "GET",
       url: "https://pokeapi.co/api/v2/pokemon/ditto",
@@ -51,5 +51,15 @@ describe("Automation API with Pokemon API", () => {
       cy.log(JSON.stringify(response.body.abilities[0].ability["name"]));
       expect(response.body.abilities[0].ability["name"]).to.eq("limber");
     });
+  });
+
+  it("Validate Negative Response", () => {
+    cy.request({
+      methos: "GET",
+      url: "https://pokeapi.co/api/v2/pokemon/eduwork",
+      failOnStatusCode: false,
+    }).as("pokemon");
+
+    cy.get("@pokemon").its("status").should("eq", 404);
   });
 });
