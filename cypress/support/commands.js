@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add(
-  "loginVia API",
+  "loginViaAPI",
   (
     email = Cypress.env("userEmail"),
     password = Cypress.env("userPassword")
