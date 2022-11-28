@@ -17,7 +17,7 @@ describe("Test Scenario API Authentication", () => {
 
     cy.get("p").should(
       "include.text",
-      "Congratulations! You must have the proper crendential"
+      "Congratulations! You must have the proper credentials."
     );
   });
 });
